@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+        body{
+           background-color: cornsilk;
+           color: chocolate;
+
+       }
+       div{
+           width: 40%;
+           height: 400px;
+           border: 2px dashed black;
+           margin:10px;
+           margin-left: 50px;
+           margin-bottom: 15px;
+           display: inline-block;
+
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+    <script>
+        
+        function Validate() {
+
+            var name=['Pradeep','Ram','Raman'];
+			var flag;
+			flag = 1;
+            var lower = /[a-z]/g;
+            var uppercase = /[A-Z]/g;
+            var num = /[0-9]/g;
+            var splchar = /[!@#$%^&*]/g;
+            if(flag == 1){
+
+           
+            if(document.getElementById("usernameid").value.length<5 || document.getElementById("usernameid").value.length>10) {
+                flag++;
+                alert("Username is not in the length of 5 to 10");
+            }
+			
+          else if(!document.getElementById("passid").value.match(lower) || !document.getElementById("passid").value.match(uppercase) || !document.getElementById("passid").value.match(num) || !document.getElementById("passid").value.match(splchar)) {
+                flag++;
+                alert("Password is not vaild.");
+            }
+
+            else if(!document.getElementById("mailid").value.match(/[a-z A-Z 0-9]+[@]+[a-z]+[.]+[a-z]/)) {
+                flag++;
+                alert("Enter a valid emailId.");
+            }
+
+         else if(document.getElementById("phoneno").value.length!=10) {
+                flag++;
+                alert("Contact number must be 10 digits");
+            }
+
+		  else( flag == 1)
+            {
+				for(let i =0; i<name.length; i++)
+				{ 
+					if(document.getElementById("usernameid").value == name[i]){
+                        flag++;
+						alert('user name exists');
+					}
+				}
+                
+                
+            }
+		
+        }
+            if(flag == 1)
+            {	
+                document.getElementById("print").innerHTML="successfully registered";
+				alert('Successfully Registered');
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <form id="adduser" >
+        <h1>User Form Validation</h1>
+        <div>
+        Name:<input type="text" id="usernameid"> <br>
+        Password:<input type="password" id="passid"> <br>
+        Email:<input type="text" id="mailid"> <br>
+        Contact:<input type="text" id="phoneno"> <br>
+        Date:<input type = "date"  id="dateid"><br>
+        Gender:<input type ="radio" name="gender" value="male">Male<input type ="radio" name="gender" value="female">Femaie<input type ="radio" name="gender" value="other">Other<br>
+        <input type="submit" onclick="Validate()">
+        </div>
+    <p id="print">
+
+    </p>
+</form>
+</body>
+</html>
